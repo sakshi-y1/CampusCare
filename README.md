@@ -5,7 +5,7 @@ CampusCare is a web-based platform designed to digitize, simplify, and track the
 ## Tech Stack
 * **Backend:** Python (Flask)
 * **Frontend:** HTML5, CSS3, JavaScript, Tailwind CSS
-* **Database:**MongoDB
+* **Database:** MongoDB
 
 ## Key Features
 * **User Authentication:** Secure login and registration for students, staffs and admin.
