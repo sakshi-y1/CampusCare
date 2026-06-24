@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard | CampusCare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+<header class="main-header">
+    <div class="navbar">
+
+        <!-- LEFT SIDE -->
+         <div class="nav-left">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <span>CampusCare</span>
+            </div>
+            <p class="tagline">Your Concern, Our Commitment</p>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="nav-right">
+            <a href="/admin/complaint-analytics" class="nav-btn">Complaint Analytics</a>
+            <a href="/logout" class="nav-btn logout-btn">Logout</a>
+        </div>
+
+    </div>
+</header>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div id="popup" class="popup">
+    <div class="popup-box">
+        {% for category, message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
+{% endif %}
+{% endwith %}
+
+<script>
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+// Auto close after 3 seconds
+setTimeout(function(){
+    var popup = document.getElementById("popup");
+    if(popup){
+        popup.style.display = "none";
+    }
+}, 3000);
+</script>
+
+
+
+<div class="container">
+    <h1>All Complaints</h1>
+
+
+<div class="filter-box">
+<form method="GET" class="filter-bar">
+
+    <div class="filters-left">
+
+        <div class="filter-group">
+            <label>Status</label>
+            <select name="status">
+                <option value="All">All Status</option>
+                <option value="Pending">Pending</option>
+                <option value="Assigned">Assigned</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Department</label>
+            <select name="department">
+                <option value="All">All Departments</option>
+                <option value="BSc CS">BSc CS</option>
+                <option value="BSc IT">BSc IT</option>
+                <option value="BMS">BMS</option>
+                <option value="BAF">BAF</option>
+                <option value="BAMMC">BAMMC</option>
+                <option value="BBI">BBI</option>
+                <option value="B.Com">B.Com</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="filters-right">
+        <button class="search-btn">Apply Filters</button>
+    </div>
+
+</form>
+
+</div>
+
+    <table>
+        <tr>
+            <th>Student ID</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Department</th>
+            <th>Assign</th>
+            <th>Attachment</th>
+
+        </tr>
+
+        {% for complaint in complaints %}
+        <tr>
+            <td>{{ complaint.student_id }}</td>
+            <td>{{ complaint.description }}</td>
+
+            <td>
+                <span class="status {{ complaint.status|lower }}">
+                    {{ complaint.status }}
+                </span>
+            </td>
+
+            <td>
+                {{ complaint.department or "Not Assigned" }}
+            </td>
+            <td>
+                {% if complaint.file %}
+                <a href="{{ url_for('static', filename='uploads/' + complaint.file) }}" target="_blank">
+                    View File
+                </a>
+                {% else %}
+                No File
+                {% endif %}
+            </td>
+
+
+            <td>
+                <form method="POST" action="/admin/assign/{{ complaint._id }}">
+                    <select name="department" required>
+                        <option value="">-- Select Department --</option>
+                        <option value="BSc CS">💻 BSc CS</option>
+                        <option value="BSc IT">🖥 BSc IT</option>
+                        <option value="BMS">📊 BMS</option>
+                        <option value="BAF">💰 BAF</option>
+                        <option value="BAMMC">🎥 BAMMC</option>
+                        <option value="BBI">📈 BBI</option>
+                        <option value="BCom">📚 B.Com</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <button type="submit">Assign</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+ <!-- ===== DASHBOARD STATS ===== -->
+<div class="stats-header">
+    <h2>Complaint Statistics</h2>
+</div>
+
+    <div class="stats-box">
+
+        <div class="card total">
+            <h3>Total</h3>
+            <p>{{ total }}</p>
+        </div>
+
+        <div class="card pending">
+            <h3>Pending</h3>
+            <p>{{ pending }}</p>
+        </div>
+
+        <div class="card assigned">
+            <h3>Assigned</h3>
+            <p>{{ assigned }}</p>
+        </div>
+
+        <div class="card progress">
+            <h3>In Progress</h3>
+            <p>{{ progress }}</p>
+        </div>
+
+        <div class="card resolved">
+            <h3>Resolved</h3>
+            <p>{{ resolved }}</p>
+        </div>
+
+    </div>
+    <!-- ===== END STATS ===== -->
+<!-- FOOTER -->
+<footer class="main-footer">
+    <p>© 2026 CampusCare | All Rights Reserved</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CampusCare | Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<header class="main-header">
+    <div class="navbar">
+        
+        <div class="nav-left">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <span>CampusCare</span>
+            </div>
+            <p class="tagline">Your Concern, Our Commitment</p>
+        </div>
+
+    </div>
+</header>
+<div class="main-content">
+<div class="auth-container">
+    <h2>Create Account</h2>
+    <p>Register to submit or manage complaints</p>
+
+    <form method="post">
+
+        <label>Full Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <label>Role</label>
+        <select name="role" id="role" required>
+            <option value="">-- Select Role --</option>
+            <option value="student">Student</option>
+            <option value="staff">Staff / Department</option>
+        </select>
+
+        <!-- Department -->
+        <div id="department-field">
+            <label>Department</label>
+            <select name="department">
+                <option value="">-- Select Department --</option>
+                <option value="BSc CS">💻 BSc CS</option>
+                <option value="BSc IT">🖥 BSc IT</option>
+                <option value="BMS">📊 BMS</option>
+                <option value="BAF">💰 BAF</option>
+                <option value="BAMMC">🎥 BAMMC</option>
+                <option value="BBI">📈 BBI</option>
+                <option value="BCom">📚 B.Com</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <div class="link">
+        Already have an account? <a href="/">Login</a>
+    </div>
+</div>
+</div>
+<script>
+const roleSelect = document.getElementById("role");
+const deptField = document.getElementById("department-field");
+
+deptField.style.display = "none";
+
+roleSelect.addEventListener("change", function () {
+    if (this.value === "staff") {
+        deptField.style.display = "block";
+    } else {
+        deptField.style.display = "none";
+    }
+});
+</script>
+<footer>
+    © 2026 CampusCare | All Rights Reserved
+</footer>
+
+</body>
+</body>
+</html>

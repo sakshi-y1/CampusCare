@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard | CampusCare</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="main-header">
+    <div class="navbar">
+        
+        <!-- Left Side -->
+        <div class="nav-left">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <span>CampusCare</span>
+            </div>
+            <p class="tagline">Your Concern, Our Commitment</p>
+        </div>
+
+        
+    </div>
+</header>
+<!-- ===== END HEADER ===== -->
+
+
+<div class="container">
+    <h1>Student Dashboard</h1>
+    <p class="subtitle">Welcome to CampusCare</p>
+
+    <div class="cards">
+        <a href="/student/new-complaint" class="card">
+            <i class="fas fa-file-circle-plus"></i>
+            <span>New Complaint</span>
+        </a>
+
+        <a href="/student/my-complaints" class="card">
+            <i class="fas fa-list-check"></i>
+            <span>My Complaints</span>
+        </a>
+
+        <a href="/student/profile" class="card">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+
+        <a href="/logout" class="card logout">
+            <i class="fas fa-power-off"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</div>
+
+
+<!-- ===== FOOTER ===== -->
+<footer class="main-footer">
+    <p>© 2026 CampusCare | All Rights Reserved</p>
+</footer>
+<!-- ===== END FOOTER ===== -->
+
+</body>
+</html>

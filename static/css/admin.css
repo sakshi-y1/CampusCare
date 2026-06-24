@@ -1,0 +1,366 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+    margin: 0;
+}
+
+
+
+.container {
+    padding: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: #2a5298;
+    color: white;
+}
+
+button {
+    padding: 6px 10px;
+    border: none;
+    background: #2a5298;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+select {
+    padding: 5px;
+}
+
+/* STATUS COLORS */
+.status.pending {
+    color: orange;
+    font-weight: bold;
+}
+
+.status.assigned {
+    color: blue;
+    font-weight: bold;
+}
+
+.status.completed {
+    color: green;
+    font-weight: bold;
+}
+/* ===== POPUP ===== */
+.popup{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.popup-box{
+    background:white;
+    padding:30px 40px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    animation: popupFade 0.3s ease;
+}
+
+.popup-box p{
+    font-size:18px;
+    margin-bottom:20px;
+    color:#333;
+    font-weight:500;
+}
+
+.popup-box button{
+    padding:10px 25px;
+    background:#2f4f88;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.popup-box button:hover{
+    background:#1f3763;
+}
+
+@keyframes popupFade{
+    from{
+        transform:scale(0.7);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* ===== PROFESSIONAL FILTER BAR ===== */
+
+.filter-bar{
+    background:#ffffff;
+    border-radius:14px;
+    padding:18px 22px;
+    margin-bottom:28px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* left section */
+.filters-left{
+    display:flex;
+    gap:26px;
+    align-items:center;
+}
+
+/* label */
+.filter-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.filter-group label{
+    font-size:12px;
+    font-weight:500;
+    color:#666;
+    margin-bottom:6px;
+}
+
+/* select box */
+.filter-group select{
+    min-width:190px;
+    height:42px;
+    padding:0 12px;
+
+    border-radius:10px;
+    border:1px solid #dcdcdc;
+
+    font-size:14px;
+    background:#fafafa;
+    transition:0.2s ease;
+}
+
+/* focus effect */
+.filter-group select:focus{
+    outline:none;
+    border-color:#3b82f6;
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(59,130,246,0.15);
+}
+
+/* right side button */
+.filters-right{
+    display:flex;
+    align-items:flex-end;
+}
+
+.search-btn{
+    height:42px;
+    padding:0 26px;
+
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:10px;
+
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:0.3px;
+
+    cursor:pointer;
+    transition:0.25s;
+}
+
+.search-btn:hover{
+    background:#1e4fd6;
+    transform:translateY(-1px);
+    box-shadow:0 4px 12px rgba(37,99,235,0.25);
+}
+
+/* ===== DASHBOARD STATS ===== */
+/* ===== STATS HEADER ===== */
+
+.stats-header{
+    margin-top:40px;
+    margin-bottom:18px;
+}
+
+.stats-header h1{
+    font-size:18px;
+    font-weight:600;
+    color:#050505;
+    letter-spacing:0.5px;
+}
+
+
+.stats-box{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    margin: 25px 0 35px 0;
+}
+
+/* Card Base */
+.card{
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 22px 15px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.25s ease;
+    border-left: 5px solid #ddd;
+}
+
+.card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+}
+
+.card h3{
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.card p{
+    font-size: 28px;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+}
+
+/* Individual subtle colors */
+.total{ border-left-color:#6c757d; }
+.pending{ border-left-color:#ffc107; }
+.assigned{ border-left-color:#0d6efd; }
+.progress{ border-left-color:#17a2b8; }
+.resolved{ border-left-color:#28a745; }
+
+/* Responsive */
+@media(max-width:1100px){
+    .stats-box{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+@media(max-width:700px){
+    .stats-box{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+.chart-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap; /* makes it responsive */
+}
+
+.chart-box {
+    flex: 1;
+    min-width: 400px;
+    height: 450px;              /* FIXED HEIGHT */
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chart-box canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+/* HEADER */
+/* HEADER NAVBAR */
+.main-header {
+    background-color: #264a89;
+    padding: 15px 40px;
+    color: white;
+}
+
+/* Flex container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Left section */
+.nav-left h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.tagline {
+    margin: 3px 0 0 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Right section */
+.nav-right {
+    display: flex;
+    gap: 20px;
+}
+
+/* Buttons */
+.nav-btn {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Logout special style */
+.logout-btn {
+    background-color: #e74c3c;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+/* FOOTER */
+.main-footer {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #264a89;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    font-size: 14px;
+}

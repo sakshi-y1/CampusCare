@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Complaints | CampusCare</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            background: #1e3c72;
+            padding: 12px 40px;
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo i {
+            font-size: 22px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .tagline {
+            font-size: 12px;
+            opacity: 0.85;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-right a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-right a:hover {
+            opacity: 0.8;
+        }
+
+        .logout-btn {
+            background: #e74c3c;
+            padding: 6px 14px;
+            border-radius: 6px;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+
+        /* ================= MAIN CONTENT ================= */
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            flex: 1;
+        }
+
+        h1 {
+            margin: 0;
+            color: #1e3c72;
+        }
+
+        .subtitle {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .complaint-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .complaint-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .complaint-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .complaint-desc {
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .status {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .Pending { background-color: #f39c12; }
+        .InProgress { background-color: #9b59b6; }
+        .Assigned { background-color: #3498db; }
+        .Resolved { background-color: #2ecc71; }
+ .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .empty {
+            text-align: center;
+            color: #777;
+            padding: 40px 0;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+    <div class="navbar">
+        <div class="logo">
+            <i class="fas fa-university"></i>
+            <div class="logo-text">
+                <span class="brand">CampusCare</span>
+                <span class="tagline">Your Concern, Our Commitment</span>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <a href="/student">Dashboard</a>
+            <a href="/student/new-complaint">New Complaint</a>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </div>
+</header>
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<div class="container">
+    <h1>My Complaints</h1>
+    <p class="subtitle">Track the status of your registered complaints</p>
+
+    {% if complaints|length == 0 %}
+        <div class="empty">
+            <p>No complaints registered yet.</p>
+        </div>
+    {% else %}
+        {% for complaint in complaints %}
+            <div class="complaint-card">
+                <div class="complaint-title">{{ complaint.title }}</div>
+                <div class="complaint-desc">{{ complaint.description }}</div>
+
+                <div class="meta">
+                    <span>{{ complaint.created_at.strftime('%d %b %Y') }}</span>
+                    <span class="status {{ complaint.status|replace(' ', '') }}">
+                        {{ complaint.status }}
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+    © 2026 CampusCare | All Rights Reserved
+</footer>
+
+</body>
+</html>

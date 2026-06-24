@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Analytics | Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<header class="main-header">
+    <div class="navbar">
+        
+        <div class="nav-left">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <span>CampusCare</span>
+            </div>
+            <p class="tagline">Your Concern, Our Commitment</p>
+        </div>
+<div class="nav-right">
+            <a href="{{ url_for('admin.admin_dashboard') }}" class="nav-btn">
+    Dashboard
+</a>
+            <a href="/logout" class="nav-btn logout-btn">Logout</a>
+        </div>
+    </div>
+</header>
+<h2 align="center">Complaint Analytics Dashboard</h2>
+<h3 align="center">Total Complaints: {{ total_complaints }}</h3>
+
+<div class="chart-container">
+    <div class="chart-box">
+        <canvas id="departmentChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <canvas id="statusChart"></canvas>
+    </div>
+</div>
+
+<script>
+    const deptLabels = {{ department_data.keys()|list|tojson }};
+    const deptValues = {{ department_data.values()|list|tojson }};
+
+    const statusLabels = {{ status_data.keys()|list|tojson }};
+    const statusValues = {{ status_data.values()|list|tojson }};
+
+    new Chart(document.getElementById('departmentChart'), {
+    type: 'bar',
+    data: {
+        labels: deptLabels,
+        datasets: [{
+            label: 'Complaints per Department',
+            data: deptValues,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        responsive: true
+    }
+});
+
+    new Chart(document.getElementById('statusChart'), {
+    type: 'pie',
+    data: {
+        labels: statusLabels,
+        datasets: [{
+            data: statusValues
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        responsive: true
+    }
+});
+</script>
+<!-- FOOTER -->
+<footer class="main-footer">
+    <p>© 2026 CampusCare | All Rights Reserved</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f4f6fb;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #2a5298;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #888;
+}
+
+.empty i {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.complaint-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.complaint-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.complaint-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.complaint-header h3 {
+    font-size: 20px;
+    color: #333;
+}
+
+.status {
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* STATUS COLORS */
+.pending {
+    background: #f39c12;
+}
+
+.in-progress {
+    background: #3498db;
+}
+
+.completed {
+    background: #2ecc71;
+}
+
+.description {
+    margin: 15px 0;
+    color: #555;
+    line-height: 1.6;
+}
+
+.complaint-footer {
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+    font-size: 14px;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #2a5298;
+    font-weight: 600;
+}
+
+.back-btn i {
+    margin-right: 6px;
+}

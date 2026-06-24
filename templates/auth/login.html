@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CampusCare | Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<header class="main-header">
+    <div class="navbar">
+        
+        <div class="nav-left">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <span>CampusCare</span>
+            </div>
+            <p class="tagline">Your Concern, Our Commitment</p>
+        </div>
+
+    </div>
+</header>
+
+<div class="main-content">
+    <div class="auth-container">
+    <h2>CampusCare</h2>
+    <p>College Complaint Management System</p>
+
+    <form method="post">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="link">
+        Don’t have an account? <a href="/register">Register</a>
+    </div>
+
+</div>
+</div>
+<footer>
+    © 2026 CampusCare | All Rights Reserved
+</footer>
+
+
+</body>
+</html>

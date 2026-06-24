@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff Dashboard | CampusCare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/staff_dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+<script>
+function toggleDropdown() {
+    document.getElementById("dropdownMenu").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('.nav-user-icon')) {
+        let dropdown = document.getElementById("dropdownMenu");
+        if (dropdown.classList.contains("show")) {
+            dropdown.classList.remove("show");
+        }
+    }
+}
+</script>
+<!-- HEADER -->
+<header class="main-header">
+    <div class="navbar">
+
+        <!-- LEFT SIDE -->
+        <div class="nav-left">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <div class="logo-text">
+                    <span class="brand">CampusCare</span>
+                    <span class="tagline">Your Concern, Our Commitment</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE (PROFILE DROPDOWN) -->
+        <div class="nav-right">
+            <div class="profile-dropdown">
+    <i class="fas fa-user-circle nav-user-icon" onclick="toggleDropdown()"></i>
+
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="/staff/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+        </div>
+
+    </div>
+</header>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <h2>
+    <span class="dept-name">{{ department }}</span> Department Complaints
+</h2>
+        
+    </div>
+
+    <!-- EMPTY STATE -->
+    {% if complaints|length == 0 %}
+        <div class="empty">
+            <h3>No Department Complaints</h3>
+            <p>No complaints are assigned to your department.</p>
+        </div>
+
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Attachment</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for c in complaints %}
+                <tr>
+                    <td>{{ c.student_id }}</td>
+                    <td>{{ c.description }}</td>
+
+                    <td>
+                        <span class="status {{ c.status|lower }}">
+                            {{ c.status }}
+                        </span>
+                    </td>
+
+                    <td>
+                        {% if c.file %}
+                            <a href="{{ url_for('static', filename='uploads/' + c.file) }}" target="_blank">
+                                View File
+                            </a>
+                        {% else %}
+                            No File
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <form action="/staff/update-status/{{ c._id }}" method="POST">
+                            <select name="status" required>
+                                <option value="">Change Status</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Resolved">Resolved</option>
+                            </select>
+                            <button type="submit" class="btn-update">Update</button>
+                        </form>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+</div>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+    <p>© 2026 CampusCare | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
