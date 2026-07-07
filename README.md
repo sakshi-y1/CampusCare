@@ -1,4 +1,4 @@
-# CampusCare - Complaint Management System
+# CampusCare - Your Concern our commitment
 
 CampusCare is a web-based platform designed to digitize, simplify, and track the complaint submission process for students and college administration.
 
