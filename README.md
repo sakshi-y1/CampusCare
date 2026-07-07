@@ -1,6 +1,6 @@
-# CampusCare - Your Concern our commitment
+# CampusCare - Your Concern, Our commitment
 
-CampusCare is a web-based platform designed to digitize, simplify, and track the complaint submission process for students and college administration.
+CampusCare is a complaint management web-based platform designed to digitize, simplify, and track the complaint submission process for students and college administration.
 
 ## Tech Stack
 * **Backend:** Python (Flask)
